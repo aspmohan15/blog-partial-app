@@ -18,6 +18,8 @@ const ViewNote = ({ appBlogs, setBlogs, getData }) => {
   useEffect(() => {
     getData();
   }, []);
+
+  const [lock, setLock] = useState(false);
   useEffect(() => {
     const data = appBlogs.filter((blog) => blog.category === categories);
     if (categories === "-- Select Categories --") setFilteredData(appBlogs);
@@ -35,6 +37,16 @@ const ViewNote = ({ appBlogs, setBlogs, getData }) => {
     setBlogs(appBlogs.filter((blog) => blog._id !== dataId));
     swal("Good job!", `Deleted Successfully`, "success");
   };
+
+  const togleLock = () => {
+    setLock(!lock);
+  };
+
+  const unLock = () => {
+    window.location.href = "https://otptask.herokuapp.com/";
+    setLock(!lock);
+  };
+
   return (
     <div>
       <h1 className="text-center">Blogs</h1>
@@ -66,22 +78,38 @@ const ViewNote = ({ appBlogs, setBlogs, getData }) => {
         {filteredData.length !== 0 ? (
           filteredData.map((blog) => {
             return (
-              <div className="card blog-card" key={blog._id}>yy
+              <div className="card blog-card" key={blog._id}>
+                
                 <div className="card-body">
-                  <span className="d-flex justify-content-between">
-                    <i
-                      class="fas fa-edit"
-                      onClick={() => editHandler(blog._id)}
-                    ></i>
-                    <i
-                      class="fas fa-trash-alt"
-                      onClick={() => deleteHandler(blog._id)}
-                    ></i>
-                  </span>
+                  {lock ? (
+                    ""
+                  ) : (
+                    <>
+                      <span className="d-flex justify-content-between">
+                        <i
+                          class="fas fa-edit"
+                          onClick={() => editHandler(blog._id)}
+                        ></i>
+                        <i
+                          class="fas fa-trash-alt"
+                          onClick={() => deleteHandler(blog._id)}
+                        ></i>
+                      </span>
+                    </>
+                  )}
+
                   <div className="mt-3">
                     <h5 className="card-title">{blog.title}</h5>
                     <p className="card-text">{blog.content}</p>
                     <span className="badge badge-info">{blog.category}</span>
+                    <button
+                      className={
+                        lock ? "btn btn-sm btn-success ml-5" : "btn btn-sm btn-danger ml-5"
+                      }
+                      onClick={lock ? unLock : togleLock}
+                    >
+                      {lock ? "Unlock" : "Lock note"}
+                    </button>
                   </div>
                 </div>
               </div>

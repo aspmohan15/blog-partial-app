@@ -16,10 +16,11 @@ const App = () => {
   };
   return (
     <BrowserRouter>
-      <Navbar />
       <Routes>
         <Route path="/" element={<Login />} />
-
+      </Routes>
+      <Navbar />
+      <Routes>
         <Route
           path="/blogs"
           element={

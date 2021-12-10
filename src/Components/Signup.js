@@ -20,7 +20,8 @@ const Signup = () => {
       .post("http://localhost:4000/user/signup", data)
       .then((res) => console.log(res.data));
     navigate("/blogs");
-    toast.success("Signup Successful");
+    
+    // toast.success("Signup Successful");
   };
   return (
     <div>
