@@ -1,0 +1,10 @@
+.bloggy-nav li{
+    padding: 10px;
+}
+.fa-bars{
+    color: white;
+    font-size: 28px;
+}
+.navbar-toggler{
+    border-color: white !important;
+}

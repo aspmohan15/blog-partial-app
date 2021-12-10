@@ -1,0 +1,1 @@
+DELETE http://localhost:5000/items/3d37c825-b4d3-4f66-854f-76b84baf7ffb HTTP/1.1
